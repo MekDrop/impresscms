@@ -55,6 +55,22 @@ defined("ICMS_ROOT_PATH") or die("ImpressCMS root path not defined");
  * @copyright	copyright (c) 2000-2007 XOOPS.org
  */
 abstract class icms_db_criteria_Element {
+	
+	/**
+	 * Render PHP by using $data as vars logic
+	 */	
+	const RENDER_PHP_VARS = 0;
+	
+	/**
+	 * Render PHP by using $data as object logic
+	 */
+	const RENDER_PHP_OBJECT = 1;		
+	
+	/**
+	 * Render PHP by using $data as array logic
+	 */
+	const RENDER_PHP_ARRAY = 2;		
+	
 	/**
 	 * Sort order
 	 * @var	string
@@ -90,13 +106,26 @@ abstract class icms_db_criteria_Element {
 
 	/**
 	 * Render the criteria element
+	 * 
+	 * @return string
 	 */
 	abstract public function render();
 	
 	/**
 	 * Renders LDAP query string
+	 * 
+	 * @return string
 	 */
 	abstract public function renderLdap();
+	
+	/**
+	 * Renders PHP style comparision
+	 * 
+	 * @param	int	$dataMode	How to render variables
+	 * 
+	 * @return	string
+	 */
+	abstract public function renderPHP($dataMode = \icms_db_criteria_Element::RENDER_PHP_OBJECT);
 
 	/**#@+
 	 * Accessor

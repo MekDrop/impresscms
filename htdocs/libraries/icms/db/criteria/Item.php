@@ -151,6 +151,47 @@ class icms_db_criteria_Item extends icms_db_criteria_Element {
 		}
 		return $clause;
 	}
+	
+	/**
+	 * Renders PHP style comparision
+	 * 
+	 * @param	int	$dataMode	How to render variables
+	 * 
+	 * @return	string
+	 */
+	public function renderPHP($dataMode = \icms_db_criteria_Element::RENDER_PHP_OBJECT) {
+		$column = preg_replace('/([^A-Za-z0-9_]+)/', '_', $this->_column);
+		$ret = '';
+		if (!empty($this->_function)) {
+			$ret .= $this->_function . '(';
+		}
+		switch ($dataMode) {
+			case self::RENDER_PHP_ARRAY:
+				$ret .= '$data[\'' . $column . '\']';
+				break;
+			case self::RENDER_PHP_OBJECT:
+				$ret .= '$data->' . $column;
+				break;
+			case self::RENDER_PHP_VARS:
+			default:
+				$ret .= '$' . $column;
+				break;
+		}
+		if (!empty($this->_function)) {
+			$ret .= ')';
+		}
+		switch (strtoupper($this->_operator)) {
+			case 'IN':
+				$ret = 'in_array(' . var_export($this->_value, true) . ' , ' . $ret . ')';
+			break;
+			case 'NOT IN':
+				$ret = 'in_array(' . var_export($this->_value, true) . ' , ' . $ret . ') === false';
+			break;
+			default:
+				$ret .= ' '. $this->_operator . ' ' . var_export($this->_value, true);
+		}		
+		return $ret;
+	}	
 
 }
 

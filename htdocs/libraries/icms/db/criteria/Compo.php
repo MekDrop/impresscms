@@ -127,10 +127,10 @@ class icms_db_criteria_Compo extends icms_db_criteria_Element {
 				$cond = $this->conditions[$i];
 				switch (strtoupper($cond)) {
 					case 'AND':
-						$op = '|';
+						$op = '&';
 					break;
 					case 'OR':
-						$op = '&';
+						$op = '|';
 					break;
 				}
 				$retval = "(" . $op . $retval . $this->criteriaElements[$i]->renderLdap() . ")";
@@ -138,5 +138,24 @@ class icms_db_criteria_Compo extends icms_db_criteria_Element {
 		}
 		return $retval;
 	}
+	
+	/**
+	 * Renders PHP style comparision
+	 * 
+	 * @param	int		$dataMode	How to render variables
+	 * 
+	 * @return	string
+	 */
+	public function renderPHP($dataMode = \icms_db_criteria_Element::RENDER_PHP_OBJECT) {
+		$retval = '';
+		foreach ($this->criteriaElements as $i => $criteria) {
+			if ($i > 0) {
+				$retval .= $this->conditions[$i];
+			}
+			$retval .= '(' . $criteria->renderPHP($dataMode) . ')';
+		}
+		return $retval;				
+	}
+	
 }
 
