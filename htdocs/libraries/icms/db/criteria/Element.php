@@ -92,6 +92,11 @@ abstract class icms_db_criteria_Element {
 	 * Render the criteria element
 	 */
 	abstract public function render();
+	
+	/**
+	 * Renders LDAP query string
+	 */
+	abstract public function renderLdap();
 
 	/**#@+
 	 * Accessor

@@ -125,10 +125,13 @@ class icms_db_criteria_Compo extends icms_db_criteria_Element {
 			$retval = $this->criteriaElements[0]->renderLdap();
 			for ($i = 1; $i < $count; $i++) {
 				$cond = $this->conditions[$i];
-				if (strtoupper($cond) == 'AND') {
-					$op = '&';
-				} elseif (strtoupper($cond) == 'OR') {
-					$op = '|';
+				switch (strtoupper($cond)) {
+					case 'AND':
+						$op = '|';
+					break;
+					case 'OR':
+						$op = '&';
+					break;
 				}
 				$retval = "(" . $op . $retval . $this->criteriaElements[$i]->renderLdap() . ")";
 			}
