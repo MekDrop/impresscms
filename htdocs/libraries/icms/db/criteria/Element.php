@@ -168,5 +168,15 @@ abstract class icms_db_criteria_Element {
 		return ' GROUP BY ' . $this->groupby;
 	}
 	/**#@-*/
+	
+	/**
+	 * Make a SQL "WHERE" clause
+	 *
+	 * @return	string
+	 */
+	public function renderWhere() {
+		$cond = $this->render();
+		return empty($cond) ? '' : "WHERE $cond";
+	}
 }
 

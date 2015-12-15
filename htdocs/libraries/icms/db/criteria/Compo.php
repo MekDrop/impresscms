@@ -113,17 +113,6 @@ class icms_db_criteria_Compo extends icms_db_criteria_Element {
 	}
 
 	/**
-	 * Make the criteria into a SQL "WHERE" clause
-	 *
-	 * @return	string
-	 */
-	public function renderWhere() {
-		$ret = $this->render();
-		$ret = ($ret != '') ? 'WHERE ' . $ret : $ret;
-		return $ret;
-	}
-
-	/**
 	 * Generate an LDAP filter from criteria
 	 *
 	 * @return string

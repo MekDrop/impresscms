@@ -152,14 +152,5 @@ class icms_db_criteria_Item extends icms_db_criteria_Element {
 		return $clause;
 	}
 
-	/**
-	 * Make a SQL "WHERE" clause
-	 *
-	 * @return	string
-	 */
-	public function renderWhere() {
-		$cond = $this->render();
-		return empty($cond) ? '' : "WHERE $cond";
-	}
 }
 
