@@ -43,7 +43,7 @@ final class icms {
 
 	/**
 	 * Logger
-	 * @var icms_core_Logger
+	 * @var Psr\Log\LoggerInterface
 	 */
 	static public $logger;
 
@@ -313,7 +313,7 @@ final class icms {
 			$http = strpos(ICMS_URL, "https://") === FALSE
 				? "http://"
 				: "https://";
-			
+
 			/* $_SERVER variables MUST be sanitized! They don't necessarily come from the server */
 			$filters = array(
 					'SCRIPT_NAME' => 'str',
@@ -321,9 +321,9 @@ final class icms {
 					'QUERY_STRING' => 'str',
 					'HTTP_REFERER' => 'url',
 			);
-			
+
 			$clean_SERVER = icms_core_DataFilter::checkVarArray($_SERVER, $filters, false);
-			
+
 			$phpself = $clean_SERVER['SCRIPT_NAME'];
 			$httphost = $clean_SERVER['HTTP_HOST'];
 			$querystring = $clean_SERVER['QUERY_STRING'];
