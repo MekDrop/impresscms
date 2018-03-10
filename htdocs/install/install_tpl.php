@@ -90,8 +90,11 @@ echo '<body>';
 			<ul>
 			<?php foreach ( $wizard->pages as $k => $page) {
 				$class = '';
-				if ($k == $wizard->currentPage )	$class = ' class="current"';
-				elseif ($k > $wizard->currentPage )	$class = ' class="disabled"';
+				if ($k == $wizard->currentPage ) {
+					$class = ' class="current"';
+				} elseif ($k > $wizard->currentPage ) {
+					$class = ' class="disabled"';
+				}
 				if (empty( $class )) {
 					$li = '<a href="' . $wizard->pageURI($page) . '">' . $wizard->pagesNames[$k] . '</a>';
 				} else {

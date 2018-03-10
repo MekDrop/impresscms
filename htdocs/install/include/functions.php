@@ -18,8 +18,7 @@
  * @param string $url the URL to be stripped.
  * @return string
  */
-function imcms_get_base_domain($url)
-{
+function imcms_get_base_domain($url) {
 	$debug = 0;
 	$base_domain = '';
 
@@ -54,15 +53,21 @@ function imcms_get_base_domain($url)
 
 	// break up domain, reverse
 	$DOMAIN = explode('.', $full_domain);
-	if ($debug) print_r($DOMAIN);
+	if ($debug) {
+		print_r($DOMAIN);
+	}
 	$DOMAIN = array_reverse($DOMAIN);
-	if ($debug) print_r($DOMAIN);
+	if ($debug) {
+		print_r($DOMAIN);
+	}
 
 	// first check for ip address
 	if (count($DOMAIN) == 4 && is_numeric($DOMAIN[0]) && is_numeric($DOMAIN[3])) {return $full_domain;}
 
 	// if only 2 domain parts, that must be our domain
-	if (count($DOMAIN) <= 2) return $full_domain;
+	if (count($DOMAIN) <= 2) {
+		return $full_domain;
+	}
 
 	/*
 	 finally, with 3+ domain parts: obviously D0 is tld now,
@@ -70,8 +75,7 @@ function imcms_get_base_domain($url)
 	 if D0 = ctld && D1 = gtld && D2 != 'www', domain = D2.D1.D0 else if D0 = ctld && D1 = gtld && D2 == 'www',
 	 domain = D1.D0 else domain = D1.D0 - these rules are simplified below.
 	 */
-	if (in_array($DOMAIN[0], $C_TLD) && in_array($DOMAIN[1], $G_TLD) && $DOMAIN[2] != 'www')
-	{
+	if (in_array($DOMAIN[0], $C_TLD) && in_array($DOMAIN[1], $G_TLD) && $DOMAIN[2] != 'www') {
 		$full_domain = $DOMAIN[2].'.'.$DOMAIN[1].'.'.$DOMAIN[0];
 	} else {
 		$full_domain = $DOMAIN[1].'.'.$DOMAIN[0];
@@ -88,8 +92,7 @@ function imcms_get_base_domain($url)
  * @param string $url the URL to be stripped.
  * @return string
  */
-function imcms_get_url_domain($url)
-{
+function imcms_get_url_domain($url) {
 	$domain = '';
 	$_URL = parse_url($url);
 
