@@ -368,10 +368,18 @@ function xoops_module_install($dirname) {
 			if (isset($atasks) && is_array($atasks)) {
 				foreach ($atasks as $taskID => $taskData) {
 					$task = &$atasks_handler->create();
-					if (isset($taskData['enabled'])) $task->setVar('sat_enabled', $taskData['enabled']);
-					if (isset($taskData['repeat'])) $task->setVar('sat_repeat', $taskData['repeat']);
-					if (isset($taskData['interval'])) $task->setVar('sat_interval', $taskData['interval']);
-					if (isset($taskData['onfinish'])) $task->setVar('sat_onfinish', $taskData['onfinish']);
+					if (isset($taskData['enabled'])) {
+						$task->setVar('sat_enabled', $taskData['enabled']);
+					}
+					if (isset($taskData['repeat'])) {
+						$task->setVar('sat_repeat', $taskData['repeat']);
+					}
+					if (isset($taskData['interval'])) {
+						$task->setVar('sat_interval', $taskData['interval']);
+					}
+					if (isset($taskData['onfinish'])) {
+						$task->setVar('sat_onfinish', $taskData['onfinish']);
+					}
 					$task->setVar('sat_name', $taskData['name']);
 					$task->setVar('sat_code', $taskData['code']);
 					$task->setVar('sat_type', 'addon/'.$module->getInfo('dirname'));
@@ -442,8 +450,7 @@ function xoops_module_install($dirname) {
 			$ret .= '<br />'.sprintf(_MD_AM_FAILINS, '<b>'.$dirname.'</b>').'&nbsp;'._MD_AM_ERRORSC.'</p>';
 			return $ret;
 		}
-	}
-	else {
+	} else {
 		return "<p>".sprintf(_MD_AM_FAILINS, "<b>".$dirname."</b>")."&nbsp;"._MD_AM_ERRORSC."<br />&nbsp;&nbsp;".sprintf(_MD_AM_ALEXISTS, $dirname)."</p>";
 	}
 }
@@ -593,8 +600,7 @@ function icms_module_update($dirname) {
 									$tplfile_new->setVar('tpl_tplset', 'default');
 									$tplfile_new->setVar('tpl_file', $blocks[$i]['template'], true);
 									$tplfile_new->setVar('tpl_type', 'block');
-								}
-								else {
+								} else {
 									$tplfile_new = $tplfile[0];
 								}
 								$tplfile_new->setVar('tpl_source', $content, true);
@@ -841,12 +847,22 @@ function icms_module_update($dirname) {
 			}
 			$atasks_handler->deleteAll($criteria);
 			foreach ($atasks as $taskID => $taskData) {
-				if (!isset($taskData['code']) || trim($taskData['code']) == '') continue;
+				if (!isset($taskData['code']) || trim($taskData['code']) == '') {
+					continue;
+				}
 				$task = &$atasks_handler->create();
-				if (isset($taskData['enabled'])) $task->setVar('sat_enabled', $taskData['enabled']);
-				if (isset($taskData['repeat'])) $task->setVar('sat_repeat', $taskData['repeat']);
-				if (isset($taskData['interval'])) $task->setVar('sat_interval', $taskData['interval']);
-				if (isset($taskData['onfinish'])) $task->setVar('sat_onfinish', $taskData['onfinish']);
+				if (isset($taskData['enabled'])) {
+					$task->setVar('sat_enabled', $taskData['enabled']);
+				}
+				if (isset($taskData['repeat'])) {
+					$task->setVar('sat_repeat', $taskData['repeat']);
+				}
+				if (isset($taskData['interval'])) {
+					$task->setVar('sat_interval', $taskData['interval']);
+				}
+				if (isset($taskData['onfinish'])) {
+					$task->setVar('sat_onfinish', $taskData['onfinish']);
+				}
 				$task->setVar('sat_name', $taskData['name']);
 				$task->setVar('sat_code', sprintf("require ICMS_ROOT_PATH . \"/modules/%s/%s\";", $module->getInfo('dirname') , addslashes($taskData['code']))) ;
 				$task->setVar('sat_type', 'addon/'.$module->getInfo('dirname'));

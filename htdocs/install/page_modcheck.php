@@ -19,7 +19,9 @@
  *
  */
 require_once 'common.inc.php';
-if (!defined( 'XOOPS_INSTALL' ) )	exit();
+if (!defined( 'XOOPS_INSTALL' ) ) {
+	exit();
+}
 
 $wizard->setPage( 'modcheck' );
 $pageHasForm = false;
@@ -102,8 +104,12 @@ if (version_compare( phpversion(), '5.2', '>=')) {
 
 <h4><?php printf( PHP_EXTENSION, CHAR_ENCODING ); ?>:&nbsp; <?php
 $ext = array();
-if (extension_loaded( 'iconv' ) )		$ext[] = 'Iconv';
-if (extension_loaded( 'mb_string' ) )	$ext[] = 'MBString';
+if (extension_loaded( 'iconv' ) ) {
+	$ext[] = 'Iconv';
+}
+if (extension_loaded( 'mb_string' ) ) {
+	$ext[] = 'MBString';
+}
 if (empty($ext)) {
 	echo xoDiag( 0, NONE );
 } else {
@@ -113,7 +119,9 @@ if (empty($ext)) {
 <div class="clear">&nbsp;</div>
 <h4><?php printf( PHP_EXTENSION, XML_PARSING ); ?>:&nbsp; <?php
 $ext = array();
-if (extension_loaded( 'xml' ) )		$ext[] = 'XML';
+if (extension_loaded( 'xml' ) ) {
+	$ext[] = 'XML';
+}
 //if (extension_loaded( 'dom' ) )		$ext[] = 'DOM';
 if (empty($ext)) {
 	echo xoDiag( 0, NONE );
@@ -124,9 +132,15 @@ if (empty($ext)) {
 <div class="clear">&nbsp;</div>
 <h4><?php printf( PHP_EXTENSION, OPEN_ID ); ?>:&nbsp; <?php
 $ext = array();
-if (extension_loaded( 'curl' ) )		$ext[] = 'Curl  <img src="img/yes.png" alt="Success" class="rootimg" />  ';
-if (extension_loaded( 'bcmath' ) )		$ext[] = ' Math Support  <img src="img/yes.png" alt="Success" class="rootimg" />  ';
-if (extension_loaded( 'openssl' ) )	$ext[] = ' OpenSSL  <img src="img/yes.png" alt="Success" class="rootimg" />';
+if (extension_loaded( 'curl' ) ) {
+	$ext[] = 'Curl  <img src="img/yes.png" alt="Success" class="rootimg" />  ';
+}
+if (extension_loaded( 'bcmath' ) ) {
+	$ext[] = ' Math Support  <img src="img/yes.png" alt="Success" class="rootimg" />  ';
+}
+if (extension_loaded( 'openssl' ) ) {
+	$ext[] = ' OpenSSL  <img src="img/yes.png" alt="Success" class="rootimg" />';
+}
 if (empty($ext)) {
 	echo xoDiag( 0, NONE );
 } else {

@@ -18,7 +18,9 @@
  *
  */
 require_once 'common.inc.php';
-if (!defined( 'XOOPS_INSTALL' ) )    exit();
+if (!defined( 'XOOPS_INSTALL' ) ) {
+	exit();
+}
 
 $wizard->setPage( 'dbconnection' );
 $pageHasForm = true;
@@ -117,7 +119,10 @@ function xoFormField( $name, $value, $label, $help = '', $type='text') {
 
 ob_start();
 ?>
-<?php if (!empty( $error ) ) echo '<div class="x2-note error">' . $error . "</div>\n"; ?>
+<?php if (!empty( $error ) ) {
+	echo '<div class="x2-note error">' . $error . "</div>\n";
+}
+?>
 <h3><?php echo LEGEND_CONNECTION; ?></h3>
 <div class="blokSQL">
 <div class="dbconn_line"><label> <?php echo LEGEND_DATABASE; ?><br />
@@ -125,7 +130,9 @@ ob_start();
 <?php
 	foreach ($connections as $option) {
 		$selected = "";
-		if (!empty($option['selected'])) $selected = " selected='selected'";
+		if (!empty($option['selected'])) {
+			$selected = " selected='selected'";
+		}
 		echo "<option value='" . $option['type'] . "'" . $selected . ">" . $option['name'] . "</option>";
  	}
 ?>

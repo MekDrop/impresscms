@@ -18,8 +18,9 @@
  *
  */
 require_once 'common.inc.php';
-if (! defined ( 'XOOPS_INSTALL' ))
-exit ();
+if (! defined ( 'XOOPS_INSTALL' )) {
+	exit ();
+}
 
 $wizard->setPage ( 'dbsettings' );
 $pageHasForm = true;
@@ -88,8 +89,9 @@ function quote_sql($sql) {
 
 function getDbCharsets($link) {
 	static $charsets = array ( );
-	if ($charsets)
-	return $charsets;
+	if ($charsets) {
+		return $charsets;
+	}
 
 	$charsets ["utf8"] = "UTF-8 Unicode";
 	$ut8_available = false;
@@ -338,8 +340,9 @@ ob_start ();
 ?>
 
 <?php
-if (! empty ( $error ))
-echo '<div class="x2-note error">' . $error . "</div>\n";
+if (! empty ( $error )) {
+	echo '<div class="x2-note error">' . $error . "</div>\n";
+}
 ?>
 <script type="text/javascript">
 function setFormFieldCollation(id, val) {
