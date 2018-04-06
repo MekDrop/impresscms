@@ -35,7 +35,9 @@
     "ext-json": "*",
     "ext-mbstring": "*",
     "ext-pcre": "*",
-    "ext-session": "*"
+    "ext-session": "*",
+    "league/route": "^3.0",
+    "guzzlehttp/psr7": "^1.4"
   },
   "suggest": {
     "ext-iconv": "Iconv is needed to handle conversions between charsets",
