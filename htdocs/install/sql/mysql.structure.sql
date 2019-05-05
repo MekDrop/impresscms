@@ -657,3 +657,24 @@ CREATE TABLE icms_data_file (
   PRIMARY KEY (fileid),
   KEY mid (mid)
 );
+
+#
+# Table structure for table `routes`
+#
+CREATE TABLE `routes`
+(
+	`id`          INT(10) UNSIGNED                                           NOT NULL AUTO_INCREMENT,
+	`mid`         SMALLINT(5) UNSIGNED                                       NULL     DEFAULT NULL COMMENT 'Module id',
+	`uri`         VARCHAR(255)                                               NOT NULL DEFAULT '0',
+	`type`        SET ('GET','DELETE','POST','PUT','PATCH','HEAD','OPTIONS') NOT NULL DEFAULT 'GET,HEAD',
+	`action`      VARCHAR(255)                                               NOT NULL,
+	`middlewares` VARCHAR(255)                                               NULL     DEFAULT NULL,
+	`strategy`    VARCHAR(255)                                               NULL     DEFAULT NULL,
+	`name`        VARCHAR(50)                                                NULL     DEFAULT NULL,
+	`last_update` TIMESTAMP                                                  NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+	PRIMARY KEY (`id`),
+	UNIQUE INDEX `uri` (`uri`),
+	UNIQUE INDEX `name` (`name`),
+	CONSTRAINT `modules_fk` FOREIGN KEY (`mid`) REFERENCES `modules` (`mid`) ON UPDATE CASCADE ON DELETE CASCADE
+)
+	COMMENT ='List of registered routes';

@@ -15,13 +15,15 @@ class LegacyModuleController {
 	 * Include any file
 	 *
 	 * @param ServerRequestInterface $request
-	 * @param ResponseInterface $response
 	 */
-	public function __invoke(ServerRequestInterface $request, ResponseInterface $response) {
+	public function __invoke(ServerRequestInterface $request): ResponseInterface
+	{
 		$_SERVER['SCRIPT_NAME'] = $_SERVER['REDIRECT_URL'];
 		$_SERVER['PHP_SELF'] = $_SERVER['SCRIPT_NAME'];
 
-		require $request->getUri()->getPath();
+		return new \icms_response_Text(
+			require($request->getUri()->getPath())
+		);
 	}
 
 }

@@ -123,6 +123,16 @@ class icms_module_Object
 	}
 
 	/**
+	 * Get path for this module
+	 *
+	 * @return string
+	 */
+	public function getPath()
+	{
+		return ICMS_MODULES_PATH . DIRECTORY_SEPARATOR . $this->dirname;
+	}
+
+	/**
 	 * register class path with autoloader
 	 * notice: this function may not be used for the system module
 	 *
@@ -421,4 +431,27 @@ class icms_module_Object
 			return $ret;
 		}
 	}
+
+	public function activate()
+	{
+		global $icms_block_handler, $icmsAdminTpl;
+		icms_view_Tpl::template_clear_module_cache($this->mid);
+		$this->setVar('isactive', 1);
+		$this->store();
+		if (!$module_handler->insert($module)) {
+			$ret = "<p>" . sprintf(_MD_AM_FAILACT, "<strong>" . $module->getVar('name') . "</strong>") . "&nbsp;"
+				. _MD_AM_ERRORSC . "<br />" . $module->getHtmlErrors();
+			return $ret . "</p>";
+		}
+		$icms_block_handler = icms_getModuleHandler('blocks', 'system');
+		$blocks = &$icms_block_handler->getByModule($module->getVar('mid'));
+		$bcount = count($blocks);
+		for ($i = 0; $i < $bcount; $i++) {
+			$blocks[$i]->setVar('isactive', 1);
+			$icms_block_handler->insert($blocks[$i]);
+		}
+		return "<p>" . sprintf(_MD_AM_OKACT, "<strong>" . $module->getVar('name') . "</strong>") . "</p>";
+	}
+
+
 }

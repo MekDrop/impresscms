@@ -6,9 +6,6 @@ use ImpressCMS\Core\Controllers\ErrorPageController;
 use ImpressCMS\Core\Controllers\IndexController;
 use ImpressCMS\Core\Controllers\LegacyModuleController;
 use ImpressCMS\Core\Controllers\LegacyResourceController;
-use League\Route\RouteCollection;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 /**
  * Internal routes collection

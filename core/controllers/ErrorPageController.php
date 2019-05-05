@@ -12,20 +12,24 @@ use Psr\Http\Message\ServerRequestInterface;
 class ErrorPageController {
 
 	/**
-	 *
+	 * Shows any error response
 	 *
 	 * @param ServerRequestInterface $request
-	 * @param ResponseInterface $response
 	 */
-	public function anyError(ServerRequestInterface $request, ResponseInterface $response) {
+	public function anyError(ServerRequestInterface $request): ResponseInterface
+	{
+		global $xoopsOption;
 		$xoopsOption['pagetype'] = 'error';
 
-		\icms::$response = new \icms_response_Error($xoopsOption);
-		\icms::$response->errorNo = isset($_REQUEST['e']) ? (int)$_REQUEST['e'] : 500;
-		if (isset($_REQUEST['msg'])) {
-			\icms::$response->msg = $_REQUEST['msg'];
+		$query = $request->getQueryParams();
+
+		$response = new \icms_response_Error();
+		$response->errorNo = isset($query['e']) ? (int)$query['e'] : 500;
+		if (isset($query['msg'])) {
+			$response->msg = $query['msg'];
 		}
-		\icms::$response->render();
+
+		return $response;
 	}
 
 }
