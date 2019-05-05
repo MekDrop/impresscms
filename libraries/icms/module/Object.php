@@ -421,4 +421,25 @@ class icms_module_Object
 			return $ret;
 		}
 	}
+
+	/**
+	 * Activates module
+	 *
+	 * @return \ImpressCMS\Core\Jobs\AbstractJob[]
+	 */
+	public function getActivationJobs()
+	{
+		$jobs = [
+			new \ImpressCMS\Core\Jobs\Modules\ClearTemplateModuleCacheJob($this),
+			new \ImpressCMS\Core\Jobs\Modules\ActivateJob($this),
+		];
+		$icms_block_handler = new icms_view_block_Handler($this->handler->db);
+		foreach ($icms_block_handler->getByModule($this->mid) as $block) {
+			$jobs[] = new \ImpressCMS\Core\Jobs\Modules\ActivateJob($block);
+		}
+		return $jobs;
+	}
+
+
+
 }

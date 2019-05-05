@@ -4,7 +4,7 @@
 		"Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
 		"This file is @generated automatically"
 	],
-	"content-hash": "5002174d07a1c914a9ae6c2197efb6c8",
+	"content-hash": "7d16b13b084cbf3a9cc45dbaddd7b343",
 	"packages": [
 		{
 			"name": "apix/cache",
@@ -94,6 +94,59 @@
 				"tagging"
 			],
 			"time": "2018-05-18T16:35:58+00:00"
+		},
+		{
+			"name": "bernard/bernard",
+			"version": "0.13.0",
+			"source": {
+				"type": "git",
+				"url": "https://github.com/bernardphp/bernard.git",
+				"reference": "e1e931c87e7bcd2af37e576b791fe69c4b562870"
+			},
+			"dist": {
+				"type": "zip",
+				"url": "https://api.github.com/repos/bernardphp/bernard/zipball/e1e931c87e7bcd2af37e576b791fe69c4b562870",
+				"reference": "e1e931c87e7bcd2af37e576b791fe69c4b562870",
+				"shasum": ""
+			},
+			"require": {
+				"php": ">=5.3.3"
+			},
+			"replace": {
+				"henrikbjorn/bernard": "self.version"
+			},
+			"require-dev": {
+				"aws/aws-sdk-php": "~2.4",
+				"doctrine/dbal": "~2.3",
+				"iron-io/iron_mq": "~1.4",
+				"jms/serializer": "~0.12",
+				"pimple/pimple": "~1.0",
+				"predis/predis": "~0.8",
+				"psr/log": "~1.0",
+				"symfony/console": "~2.0",
+				"symfony/dependency-injection": "~2.0",
+				"symfony/serializer": "~2.2"
+			},
+			"type": "library",
+			"extra": {
+				"branch-alias": {
+					"dev-master": "0.10.x-dev"
+				}
+			},
+			"autoload": {
+				"psr-0": {
+					"Bernard": "src/"
+				},
+				"files": [
+					"src/Bernard/functions.php"
+				]
+			},
+			"notification-url": "https://packagist.org/downloads/",
+			"license": [
+				"MIT"
+			],
+			"description": "Message queue implemented in PHP with Redis as a backend.",
+			"time": "2019-01-25T13:22:03+00:00"
 		},
 		{
 			"name": "cerdic/css-tidy",

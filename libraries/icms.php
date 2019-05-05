@@ -11,7 +11,7 @@
  * @internal    for convenience, as we are not targetting php 5.3+ yet
  */
 
-use \League\Container\Container;
+use League\Container\Container;
 
 /**
  * ICMS Kernel / Services manager
@@ -96,6 +96,7 @@ final class icms extends Container {
 		$this->addServiceProvider(\ImpressCMS\Core\Providers\ConfigServiceProvider::class);
 		$this->addServiceProvider(\ImpressCMS\Core\Providers\ModuleServiceProvider::class);
 		$this->addServiceProvider(\ImpressCMS\Core\Providers\CacheServiceProvider::class);
+		$this->addServiceProvider(\ImpressCMS\Core\Providers\QueueServiceProvider::class);
 		// register links for compatibility
 		self::$db = $this->get('db');
 		self::$xoopsDB = $this->get('xoopsDB');
