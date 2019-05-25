@@ -42,74 +42,23 @@ final class icms extends Container {
 
 	/** @var array */
 	public static $urls = false;
-
-	/**
-	 * array of handlers
-	 * @var array
-	 */
-	static protected $handlers;
-
-	/**
-	 * Initialize ImpressCMS before bootstrap
-	 *
-	 * @return $this
-	 */
-	public function setup() {
-		self::$paths['www'] = array(ICMS_ROOT_PATH, ICMS_URL);
-		self::$paths['modules'] = array(ICMS_ROOT_PATH . '/modules', ICMS_URL . '/modules');
-		self::$paths['themes'] = array(ICMS_THEME_PATH, ICMS_THEME_URL);
-		// Initialize the autoloader
-		require_once __DIR__ . '/icms/Autoloader.php';
-		icms_Autoloader::setup();
-		register_shutdown_function(array(__CLASS__, 'shutdown'));
-		$this->buildRelevantUrls();
-
-		return $this;
-	}
-
 	/**
 	 * Some vars for compatibility
 	 *
 	 * @deprecated
 	 */
 	public static $db, $xoopsDB, $logger, $preload, $config, $security, $session, $module;
-
 	/**
 	 * Current logged in user
 	 *
 	 * @var icms_member_user_Object|null
 	 */
 	public static $user;
-
 	/**
-	 * Launch bootstrap and instanciate global services
-	 *
-	 * @return $this
+	 * array of handlers
+	 * @var array
 	 */
-	public function boot() {
-		$this->addServiceProvider(\ImpressCMS\Core\Providers\PreloadServiceProvider::class);
-		$this->addServiceProvider(\ImpressCMS\Core\Providers\LoggerServiceProvider::class);
-		$this->addServiceProvider(\ImpressCMS\Core\Providers\FilesystemServiceProvider::class);
-		$this->addServiceProvider(\ImpressCMS\Core\Providers\DatabaseServiceProvider::class);
-		$this->addServiceProvider(\ImpressCMS\Core\Providers\SecurityServiceProvider::class);
-		$this->addServiceProvider(\ImpressCMS\Core\Providers\SessionServiceProvider::class);
-		$this->addServiceProvider(\ImpressCMS\Core\Providers\ConfigServiceProvider::class);
-		$this->addServiceProvider(\ImpressCMS\Core\Providers\ModuleServiceProvider::class);
-		$this->addServiceProvider(\ImpressCMS\Core\Providers\CacheServiceProvider::class);
-		$this->addServiceProvider(\ImpressCMS\Core\Providers\QueueServiceProvider::class);
-		// register links for compatibility
-		self::$db = $this->get('db');
-		self::$xoopsDB = $this->get('xoopsDB');
-		self::$logger = $this->get('logger');
-		self::$preload = $this->get('preload');
-		self::$config = $this->get('config');
-		self::$security = $this->get('security');
-		self::$session = $this->get('session');
-		//Cant do this here until common.php 100% refactored
-		//self::$preload->triggerEvent('finishCoreBoot');
-
-		return $this;
-	}
+	static protected $handlers;
 
 	/**
 	 * Finalizes all processes as the script exits
@@ -121,19 +70,6 @@ final class icms extends Container {
 		}
 		// Ensure the logger can decorate output before objects are destroyed
 		while (@ob_end_flush());
-	}
-
-	/**
-	 * Get instance
-	 *
-	 * @return icms|null
-	 */
-	public static function &getInstance() {
-		static $instance = null;
-		if ($instance === null) {
-			$instance = new self();
-		}
-		return $instance;
 	}
 
 	/**
@@ -163,6 +99,16 @@ final class icms extends Container {
 	}
 
 	/**
+	 * Convert a ImpressCMS path to an URL
+	 * @param    string $url
+	 * @return    string
+	 */
+	static public function url($url)
+	{
+		return (false !== strpos($url, '://') ? $url : icms::getInstance()->path($url, true));
+	}
+
+	/**
 	 * Convert a ImpressCMS path to a physical one
 	 * @param    string $url URL string to convert to a physical path
 	 * @param    boolean $virtual
@@ -182,12 +128,17 @@ final class icms extends Container {
 	}
 
 	/**
-	 * Convert a ImpressCMS path to an URL
-	 * @param    string $url
-	 * @return    string
+	 * Get instance
+	 *
+	 * @return icms|null
 	 */
-	static public function url($url) {
-		return (false !== strpos($url, '://')?$url:self::path($url, true));
+	public static function &getInstance()
+	{
+		static $instance = null;
+		if ($instance === null) {
+			$instance = new self();
+		}
+		return $instance;
 	}
 
 	/**
@@ -253,6 +204,25 @@ final class icms extends Container {
 	}
 
 	/**
+	 * Initialize ImpressCMS before bootstrap
+	 *
+	 * @return $this
+	 */
+	public function setup()
+	{
+		self::$paths['www'] = array(ICMS_ROOT_PATH, ICMS_URL);
+		self::$paths['modules'] = array(ICMS_ROOT_PATH . '/modules', ICMS_URL . '/modules');
+		self::$paths['themes'] = array(ICMS_THEME_PATH, ICMS_THEME_URL);
+		// Initialize the autoloader
+		require_once __DIR__ . '/icms/Autoloader.php';
+		icms_Autoloader::setup();
+		register_shutdown_function(array(__CLASS__, 'shutdown'));
+		$this->buildRelevantUrls();
+
+		return $this;
+	}
+
+	/**
 	 * Build URLs for global use throughout the application
 	 * @return    array
 	 */
@@ -294,5 +264,35 @@ final class icms extends Container {
 			//self::$urls['isHomePage'] = (ICMS_URL . "/index.php") == ($http . $httphost . $phpself);
 		}
 		return self::$urls;
+	}
+
+	/**
+	 * Launch bootstrap and instanciate global services
+	 *
+	 * @return $this
+	 */
+	public function boot()
+	{
+		$this->addServiceProvider(\ImpressCMS\Core\Providers\PreloadServiceProvider::class);
+		$this->addServiceProvider(\ImpressCMS\Core\Providers\LoggerServiceProvider::class);
+		$this->addServiceProvider(\ImpressCMS\Core\Providers\FilesystemServiceProvider::class);
+		$this->addServiceProvider(\ImpressCMS\Core\Providers\DatabaseServiceProvider::class);
+		$this->addServiceProvider(\ImpressCMS\Core\Providers\SecurityServiceProvider::class);
+		$this->addServiceProvider(\ImpressCMS\Core\Providers\SessionServiceProvider::class);
+		$this->addServiceProvider(\ImpressCMS\Core\Providers\ConfigServiceProvider::class);
+		$this->addServiceProvider(\ImpressCMS\Core\Providers\ModuleServiceProvider::class);
+		$this->addServiceProvider(\ImpressCMS\Core\Providers\CacheServiceProvider::class);
+		// register links for compatibility
+		self::$db = $this->get('db');
+		self::$xoopsDB = $this->get('xoopsDB');
+		self::$logger = $this->get('logger');
+		self::$preload = $this->get('preload');
+		self::$config = $this->get('config');
+		self::$security = $this->get('security');
+		self::$session = $this->get('session');
+		//Cant do this here until common.php 100% refactored
+		//self::$preload->triggerEvent('finishCoreBoot');
+
+		return $this;
 	}
 }
