@@ -20,7 +20,7 @@ jobs:
           REGISTRY_USERNAME: MekDrop
           REGISTRY_HOSTNAME: docker.pkg.github.com
         run: |
-          docker login ${REGISTRY_HOSTNAME} --username ${REGISTRY_USERNAME}
+          docker login ${REGISTRY_HOSTNAME} --username ${REGISTRY_USERNAME} -p ${REGISTRY_TOKEN}
           docker pull ${CONTAINER_IMAGE}:${CONTAINER_TAG} || true
           docker build --compress --cache-from ${CONTAINER_IMAGE}:${CONTAINER_TAG} --file .docker/php7.2/fpm/Dockerfile --tag ${CONTAINER_TAG} .
           docker push ${CONTAINER_IMAGE}:${CONTAINER_TAG}
