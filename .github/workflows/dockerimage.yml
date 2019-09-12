@@ -15,12 +15,12 @@ jobs:
           args: install --no-dev --ignore-platform-reqs --optimize-autoloader
       - name: Build the Docker image for PHP 7.2 (fpm)
         env:
-          CONTAINER_IMAGE: php7.2-fpm
-          CONTAINER_TAG: php7.2-fpm
+          CONTAINER_IMAGE: docker.pkg.github.com/MekDrop/ImpressCMS/php7.2-fpm
+          CONTAINER_TAG: latest
           REGISTRY_USERNAME: MekDrop
           REGISTRY_HOSTNAME: docker.pkg.github.com
         run: |
           docker login ${REGISTRY_HOSTNAME} --username ${REGISTRY_USERNAME} -p ${{ secrets.REGISTRY_TOKEN }}
           docker pull ${CONTAINER_IMAGE}:${CONTAINER_TAG} || true
-          docker build --compress --cache-from ${CONTAINER_IMAGE}:${CONTAINER_TAG} --file .docker/php7.2/fpm/Dockerfile --tag ${CONTAINER_TAG} .
+          docker build --compress --cache-from ${CONTAINER_IMAGE}:${CONTAINER_TAG} --file .docker/php7.2/fpm/Dockerfile --tag ${CONTAINER_TAG} --tag ${GITHUB_SHA} .
           docker push ${CONTAINER_IMAGE}:${CONTAINER_TAG}
