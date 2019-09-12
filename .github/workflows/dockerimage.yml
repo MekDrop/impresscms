@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v1
       - uses: MilesChou/composer-action@master
         with:
-          args: install --no-dev
+          args: install --no-dev --ignore-platform-reqs --optimize-autoloader
       - name: Build the Docker image for PHP 7.2 (fpm)
         env:
           CONTAINER_IMAGE: php7.2-fpm
