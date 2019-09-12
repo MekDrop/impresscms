@@ -15,7 +15,7 @@ jobs:
           args: install --no-dev --ignore-platform-reqs --optimize-autoloader
       - name: Build the Docker image for PHP 7.2 (fpm)
         env:
-          CONTAINER_IMAGE: docker.pkg.github.com/MekDrop/ImpressCMS/php7.2-fpm
+          CONTAINER_IMAGE: docker.pkg.github.com/MekDrop/impresscms/php7.2-fpm
           CONTAINER_TAG: latest
           REGISTRY_USERNAME: MekDrop
           REGISTRY_HOSTNAME: docker.pkg.github.com
