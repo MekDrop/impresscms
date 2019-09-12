@@ -11,7 +11,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: MilesChou/composer-action@master
-        args: install --no-dev
+        with:
+          args: install --no-dev
       - name: Build the Docker image for PHP 7.2 (fpm)
         env:
           CONTAINER_IMAGE: php7.2-fpm
