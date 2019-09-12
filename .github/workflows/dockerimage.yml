@@ -1,0 +1,25 @@
+name: Build docker images
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: MilesChou/composer-action@master
+        args: install --no-dev
+      - name: Build the Docker image for PHP 7.2 (fpm)
+        env:
+          CONTAINER_IMAGE: php7.2-fpm
+          CONTAINER_TAG: php7.2-fpm
+          REGISTRY_USERNAME: MekDrop
+          REGISTRY_HOSTNAME: docker.pkg.github.com
+        run: |
+          docker login ${REGISTRY_HOSTNAME} --username ${REGISTRY_USERNAME}
+          docker pull ${CONTAINER_IMAGE}:${CONTAINER_TAG} || true
+          docker build --compress --cache-from ${CONTAINER_IMAGE}:${CONTAINER_TAG} --file .docker/php7.2/fpm/Dockerfile --tag ${CONTAINER_TAG} .
+          docker push ${CONTAINER_IMAGE}:${CONTAINER_TAG}
