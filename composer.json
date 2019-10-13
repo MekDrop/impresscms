@@ -85,7 +85,29 @@
       "commands": [
       ],
       "boot": "mainfile.php"
-    }
+    },
+    "routes": [
+      {
+        "path": "/modules/{module}/{path}.php",
+        "handler": "\\ImpressCMS\\Core\\Controllers\\LegacyModuleController",
+        "method": "any"
+      },
+      {
+        "path": "/modules/{module}/{path}",
+        "handler": "\\ImpressCMS\\Core\\Controllers\\LegacyResourceController",
+        "method": "any"
+      },
+      {
+        "path": "/",
+        "handler": "\\ImpressCMS\\Core\\Controllers\\IndexController::getIndex",
+        "method": "get"
+      },
+      {
+        "path": "/",
+        "handler": "\\ImpressCMS\\Core\\Controllers\\ErrorPageController::anyError",
+        "method": "any"
+      }
+    ]
   },
   "config": {
     "optimize-autoloader": true,
