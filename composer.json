@@ -100,6 +100,11 @@
         "method": "any"
       },
       {
+        "path": "/{path}.php",
+        "handler": "\\ImpressCMS\\Core\\Controllers\\LegacyModuleController",
+        "method": "any"
+      },
+      {
         "path": "/",
         "handler": "\\ImpressCMS\\Core\\Controllers\\IndexController::getIndex",
         "method": "get"

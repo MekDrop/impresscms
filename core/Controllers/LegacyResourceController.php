@@ -21,6 +21,7 @@ class LegacyResourceController {
 		if ($file[0] == '.') {
 			return new Response(403);
 		}
+		$file = ICMS_ROOT_PATH . $file;
 		if (!file_exists($file)) {
 			return new Response(404);
 		}
@@ -41,7 +42,7 @@ class LegacyResourceController {
 				'Content-Type' => $mimetype,
 				'Etag' => md5_file($file)
 			],
-			fopen($file, 'rb')
+			fopen($file, 'r')
 		);
 	}
 }

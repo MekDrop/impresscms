@@ -25,7 +25,7 @@ class LegacyModuleController {
 		$_SERVER['SCRIPT_NAME'] = $_SERVER['REDIRECT_URL'];
 		$_SERVER['PHP_SELF'] = $_SERVER['SCRIPT_NAME'];
 
-		$file = $request->getUri()->getPath();
+		$file = ICMS_ROOT_PATH . $request->getUri()->getPath();
 
 		if (!file_exists($file)) {
 			return new Response(404);
