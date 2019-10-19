@@ -17,6 +17,7 @@ include_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'mainfile.php';
  */
 $router = \Imponeer\ComposerRoutesRegistrationPlugin\PredefinedRouterFactory::create();
 $request = \GuzzleHttp\Psr7\ServerRequest::fromGlobals();
-$response = $router->dispatch($request);
 
-(new \Zend\HttpHandlerRunner\Emitter\SapiEmitter())->emit($response);
+(new \Zend\HttpHandlerRunner\Emitter\SapiEmitter())->emit(
+	$router->dispatch($request)
+);

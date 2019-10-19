@@ -11,7 +11,8 @@ use Psr\Http\Message\ResponseInterface;
  *
  * @package ImpressCMS\Core\Controllers
  */
-class IndexController implements Controller{
+class IndexController
+{
 
 	/**
 	 * Main controller action
@@ -23,7 +24,6 @@ class IndexController implements Controller{
 	public function getIndex(RequestInterface $request): ResponseInterface
 	{
 		global $icmsConfig;
-
 		$response = new Response();
 
 		$member_handler = \icms::handler('icms_member');
@@ -48,13 +48,17 @@ class IndexController implements Controller{
 				$page_handler = \icms::handler('icms_data_page');
 				$page = $page_handler->get($arr[1]);
 				if (is_object($page)) {
-					header('Location: ' . $page->getURL());
+					return new Response(304, [
+						'Location' => $page->getURL()
+					]);
 				} else {
 					$icmsConfig['startpage'] = '--';
 					$this->getDefaultEmptyPage($request, $response);
 				}
 			} else {
-				header('Location: ' . ICMS_MODULES_URL . '/' . $icmsConfig['startpage'] . '/');
+				return new Response(304, [
+					'Location' => ICMS_MODULES_URL . '/' . $icmsConfig['startpage'] . '/'
+				]);
 			}
 			exit();
 		} else {
