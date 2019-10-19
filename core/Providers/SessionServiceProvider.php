@@ -2,9 +2,9 @@
 
 namespace ImpressCMS\Core\Providers;
 
-use League\Container\ServiceProvider\AbstractServiceProvider;
-use icms_core_Session;
 use icms;
+use icms_core_Session;
+use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 
 /**

@@ -2,8 +2,8 @@
 
 namespace ImpressCMS\Core\Providers;
 
-use League\Container\ServiceProvider\AbstractServiceProvider;
 use icms_db_Factory;
+use League\Container\ServiceProvider\AbstractServiceProvider;
 
 /**
  * Database service provider

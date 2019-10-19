@@ -1,6 +1,8 @@
 <?php
 
 namespace ImpressCMS\Core\Controllers;
+
+use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -15,6 +17,8 @@ class ErrorPageController {
 	 * Shows any error response
 	 *
 	 * @param ServerRequestInterface $request
+	 *
+	 * @return ResponseInterface
 	 */
 	public function anyError(ServerRequestInterface $request): ResponseInterface
 	{
@@ -23,13 +27,11 @@ class ErrorPageController {
 
 		$query = $request->getQueryParams();
 
-		$response = new \icms_response_Error();
-		$response->errorNo = isset($query['e']) ? (int)$query['e'] : 500;
-		if (isset($query['msg'])) {
-			$response->msg = $query['msg'];
-		}
-
-		return $response;
+		return new Response(
+			isset($query['e']) ? (int)$query['e'] : 500,
+			[],
+			isset($query['msg']) ? $query['msg'] : null
+		);
 	}
 
 }

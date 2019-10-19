@@ -2,21 +2,21 @@
 
 namespace ImpressCMS\Core\Providers;
 
+use icms_preload_Handler as PreloadHandler;
 use League\Container\ServiceProvider\AbstractServiceProvider;
-use icms_core_Logger;
-use icms_Event;
 use League\Container\ServiceProvider\BootableServiceProviderInterface;
 
 /**
- * Logger service provider
+ * Preload service provider
  */
-class LoggerServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface
+class PreloadServiceProvider extends AbstractServiceProvider implements BootableServiceProviderInterface
 {
+
 	/**
 	 * @inheritdoc
 	 */
 	protected $provides = [
-		'logger'
+		'preload'
 	];
 
 	/**
@@ -32,9 +32,10 @@ class LoggerServiceProvider extends AbstractServiceProvider implements BootableS
 	 */
 	public function boot()
 	{
-		$this->getContainer()->add('logger', function () {
-			return icms_core_Logger::instance();
+		$this->getContainer()->add('preload', function () {
+			$preload = PreloadHandler::getInstance();
+			$preload->triggerEvent('startCoreBoot');
+			return $preload;
 		});
 	}
-
 }

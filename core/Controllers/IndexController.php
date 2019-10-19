@@ -2,6 +2,7 @@
 
 namespace ImpressCMS\Core\Controllers;
 
+use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -16,10 +17,14 @@ class IndexController implements Controller{
 	 * Main controller action
 	 *
 	 * @param RequestInterface $request
-	 * @param ResponseInterface $response
+	 *
+	 * @return ResponseInterface
 	 */
-	public function getIndex(RequestInterface $request, ResponseInterface $response) {
+	public function getIndex(RequestInterface $request): ResponseInterface
+	{
 		global $icmsConfig;
+
+		$response = new Response();
 
 		$member_handler = \icms::handler('icms_member');
 		$group = $member_handler->getUserBestGroup(
@@ -55,6 +60,8 @@ class IndexController implements Controller{
 		} else {
 			$this->getDefaultEmptyPage($request, $response);
 		}
+
+		return $response;
 	}
 
 	protected function getDefaultEmptyPage(RequestInterface $request, ResponseInterface $response) {

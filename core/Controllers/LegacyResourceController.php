@@ -2,6 +2,7 @@
 
 namespace ImpressCMS\Core\Controllers;
 
+use GuzzleHttp\Psr7\Response;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
@@ -11,16 +12,18 @@ class LegacyResourceController {
 	 * Include any file
 	 *
 	 * @param ServerRequestInterface $request
-	 * @param ResponseInterface $response
+	 *
+	 * @return ResponseInterface
 	 */
-	public function __invoke(ServerRequestInterface $request, ResponseInterface $response) {
-		if ($request->getUri()->getPath()[0] == '.') {
-			$_REQUEST['e'] = 403;
-			http_response_code(403);
-			include 'error.php';
-			exit();
-		}
+	public function __invoke(ServerRequestInterface $request): ResponseInterface
+	{
 		$file = $request->getUri()->getPath();
+		if ($file[0] == '.') {
+			return new Response(403);
+		}
+		if (!file_exists($file)) {
+			return new Response(404);
+		}
 		switch (strtolower(pathinfo($file, PATHINFO_EXTENSION))) {
 			case 'css':
 				$mimetype = 'text/css';
@@ -31,9 +34,14 @@ class LegacyResourceController {
 			default:
 				$mimetype = mime_content_type($file);
 		}
-		$response->withHeader("Last-Modified", gmdate("D, d M Y H:i:s", filemtime($file))." GMT" )
-				 ->withHeader('Content-Type', $mimetype)
-		 		 ->withHeader('Etag', md5_file($file));
-		readfile($file);
+		return new Response(
+			200,
+			[
+				"Last-Modified" => gmdate("D, d M Y H:i:s", filemtime($file)) . " GMT",
+				'Content-Type' => $mimetype,
+				'Etag' => md5_file($file)
+			],
+			fopen($file, 'rb')
+		);
 	}
 }

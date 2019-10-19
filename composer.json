@@ -36,20 +36,21 @@
     "erusev/parsedown": "^1.7.0",
     "ezyang/htmlpurifier": "^4.10",
     "geshi/geshi": "^1.0",
+    "guzzlehttp/psr7": "^1.4",
     "imponeer/composer-custom-commands": "^0.1.0",
+    "imponeer/composer-routes-registration-plugin": "dev-master",
     "keo/iso-639": "^1.0",
     "league/container": "^3.2",
     "league/flysystem": "1.0.51",
+    "league/route": "^4.0",
     "mibe/feedwriter": "^1.1",
     "old-xoops-libraries/php-downloader": "1.*",
     "phpexperts/laravel-env-polyfill": "^1.0",
     "phpmailer/phpmailer": "6.0.7",
     "simplepie/simplepie": "^1.5",
     "tecnickcom/tcpdf": "^6.2",
-    "ezyang/htmlpurifier": "^4.10",
-    "league/route": "^4.0",
-    "guzzlehttp/psr7": "^1.4",
-    "vlucas/phpdotenv": "3.3.3"
+    "vlucas/phpdotenv": "3.3.3",
+    "zendframework/zend-httphandlerrunner": "^1.1"
   },
   "suggest": {
     "ext-iconv": "Iconv is needed to handle conversions between charsets",
@@ -67,7 +68,7 @@
       "modules/"
     ],
     "psr-4": {
-      "ImpressCMS\\Core\\Providers\\": "core/providers/"
+      "ImpressCMS\\Core\\": "core/"
     },
     "files": [
       "include/version.php",
@@ -86,6 +87,7 @@
       ],
       "boot": "mainfile.php"
     },
+    "router-class": "\\League\\Route\\Router",
     "routes": [
       {
         "path": "/modules/{module}/{path}.php",
@@ -101,13 +103,11 @@
         "path": "/",
         "handler": "\\ImpressCMS\\Core\\Controllers\\IndexController::getIndex",
         "method": "get"
-      },
-      {
-        "path": "/",
-        "handler": "\\ImpressCMS\\Core\\Controllers\\ErrorPageController::anyError",
-        "method": "any"
       }
-    ]
+    ],
+    "middlewares_aliases": {
+      "auth": "\\ImpressCMS\\Core\\Middlewares\\AuthMiddleware"
+    }
   },
   "config": {
     "optimize-autoloader": true,
@@ -115,5 +115,11 @@
   },
   "scripts": {
     "test": "phpunit -c tests/configuration.xml"
-  }
+  },
+  "repositories": [
+    {
+      "type": "git",
+      "url": "https://github.com/imponeer/composer-routes-registration-plugin.git"
+    }
+  ]
 }
