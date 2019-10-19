@@ -32,3 +32,5 @@
  *
  * @todo        Remove this file in the future
  */
+
+global $icmsTpl;
