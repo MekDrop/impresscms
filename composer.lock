@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9d418a8d17605835f79bae8b77cc1a7d",
+    "content-hash": "0a755a9ff73ca28f159dcd4ab021ed97",
     "packages": [
         {
             "name": "0.0.0/composer-include-files",
@@ -297,6 +297,22 @@
             "time": "2019-03-17T18:48:37+00:00"
         },
         {
+            "name": "extremephp/extremephp",
+            "version": "0.15a",
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.sourceforge.net/project/extremephp/extremephp/eXtremePHP%200.15A/eXtremePHP-0.15a.zip?r=&ts=1572818691&use_mirror=master",
+                "reference": null,
+                "shasum": null
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "xml/"
+                ]
+            }
+        },
+        {
             "name": "ezyang/htmlpurifier",
             "version": "v4.12.0",
             "source": {
@@ -420,7 +436,7 @@
             ],
             "authors": [
                 {
-                    "name": "Raimondas Rimkevicius",
+                    "name": "Raimondas Rimkevičius",
                     "email": "mekdrop@impresscms.org"
                 }
             ],
@@ -3704,7 +3720,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "extremephp/extremephp": 15
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
