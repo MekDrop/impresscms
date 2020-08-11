@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bb6e860d74e11756d654ae03685b34f6",
+    "content-hash": "aa3da44f720ce3ce199adb940be9fdac",
     "packages": [
         {
             "name": "0.0.0/composer-include-files",
@@ -1445,6 +1445,62 @@
                 "status"
             ],
             "time": "2020-04-16T13:19:50+00:00"
+        },
+        {
+            "name": "melbahja/seo",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/melbahja/seo.git",
+                "reference": "e113c60e65a51fd8d23661abb98d759c3637fd1a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/melbahja/seo/zipball/e113c60e65a51fd8d23661abb98d759c3637fd1a",
+                "reference": "e113c60e65a51fd8d23661abb98d759c3637fd1a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-xml": "*",
+                "php": ">=7.1"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^7.5"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Melbahja\\Seo\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mohamed ELbahja",
+                    "email": "mohamed@elbahja.me",
+                    "homepage": "https://elbahja.me",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple PHP library to help developers ? do better on-page SEO optimization",
+            "keywords": [
+                "PHP7",
+                "meta tags",
+                "open graph",
+                "php7.1",
+                "schema.org",
+                "search engine optimization",
+                "seo",
+                "sitemap index",
+                "sitemap.xml",
+                "sitemaps",
+                "twitter tags"
+            ],
+            "time": "2019-03-02T17:07:30+00:00"
         },
         {
             "name": "mibe/feedwriter",
