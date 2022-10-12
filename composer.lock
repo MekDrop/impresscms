@@ -2271,16 +2271,16 @@
         },
         {
             "name": "imponeer/smarty-xo",
-            "version": "v1.1.3",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imponeer/smarty-xo.git",
-                "reference": "ceffbd20b525078856cc2928d312c4804c0e3b35"
+                "reference": "c1adf2e7673e1961457e411757168a2e035d6eef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imponeer/smarty-xo/zipball/ceffbd20b525078856cc2928d312c4804c0e3b35",
-                "reference": "ceffbd20b525078856cc2928d312c4804c0e3b35",
+                "url": "https://api.github.com/repos/imponeer/smarty-xo/zipball/c1adf2e7673e1961457e411757168a2e035d6eef",
+                "reference": "c1adf2e7673e1961457e411757168a2e035d6eef",
                 "shasum": ""
             },
             "require": {
@@ -2314,9 +2314,9 @@
             ],
             "support": {
                 "issues": "https://github.com/imponeer/smarty-xo/issues",
-                "source": "https://github.com/imponeer/smarty-xo/tree/v1.1.3"
+                "source": "https://github.com/imponeer/smarty-xo/tree/v1.1.5"
             },
-            "time": "2022-09-13T10:07:54+00:00"
+            "time": "2022-10-02T12:16:51+00:00"
         },
         {
             "name": "imponeer/symfony-translations-constants-loader",
