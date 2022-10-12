@@ -2085,16 +2085,16 @@
         },
         {
             "name": "imponeer/smarty-image",
-            "version": "v1.1.3",
+            "version": "v1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imponeer/smarty-image.git",
-                "reference": "1e4c5fd36ab2e38047189a78bfa1792eee32162b"
+                "reference": "c9374a2c429e8b1e8f956d102137c45fbdc44379"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imponeer/smarty-image/zipball/1e4c5fd36ab2e38047189a78bfa1792eee32162b",
-                "reference": "1e4c5fd36ab2e38047189a78bfa1792eee32162b",
+                "url": "https://api.github.com/repos/imponeer/smarty-image/zipball/c9374a2c429e8b1e8f956d102137c45fbdc44379",
+                "reference": "c9374a2c429e8b1e8f956d102137c45fbdc44379",
                 "shasum": ""
             },
             "require": {
@@ -2128,9 +2128,9 @@
             ],
             "support": {
                 "issues": "https://github.com/imponeer/smarty-image/issues",
-                "source": "https://github.com/imponeer/smarty-image/tree/v1.1.3"
+                "source": "https://github.com/imponeer/smarty-image/tree/v1.1.4"
             },
-            "time": "2022-09-13T09:51:28+00:00"
+            "time": "2022-10-02T12:20:59+00:00"
         },
         {
             "name": "imponeer/smarty-includeq",
