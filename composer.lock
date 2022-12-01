@@ -4466,16 +4466,16 @@
         },
         {
             "name": "old-xoops-libraries/php-downloader",
-            "version": "v1.0.3",
+            "version": "v1.0.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/OldXoopsLibraries/php-downloader.git",
-                "reference": "ff80b03b3647048cb86a04070dc715cc002751d8"
+                "reference": "5444019da94189281ab1eb92e94b4fc22b038ac3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/OldXoopsLibraries/php-downloader/zipball/ff80b03b3647048cb86a04070dc715cc002751d8",
-                "reference": "ff80b03b3647048cb86a04070dc715cc002751d8",
+                "url": "https://api.github.com/repos/OldXoopsLibraries/php-downloader/zipball/5444019da94189281ab1eb92e94b4fc22b038ac3",
+                "reference": "5444019da94189281ab1eb92e94b4fc22b038ac3",
                 "shasum": ""
             },
             "require": {
@@ -4499,9 +4499,9 @@
             "description": "Some classes from php-downloader v1.0 by www.ipunkt.biz package that were used in Xoops but can't be found outside",
             "support": {
                 "issues": "https://github.com/OldXoopsLibraries/php-downloader/issues",
-                "source": "https://github.com/OldXoopsLibraries/php-downloader/tree/v1.0.3"
+                "source": "https://github.com/OldXoopsLibraries/php-downloader/tree/v1.0.5"
             },
-            "time": "2022-09-13T21:59:41+00:00"
+            "time": "2022-10-02T19:07:40+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
