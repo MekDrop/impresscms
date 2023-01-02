@@ -2452,23 +2452,21 @@
         },
         {
             "name": "impresscms/composer-addon-installer-plugin",
-            "version": "v1.0.5",
+            "version": "v1.0.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ImpressCMS/composer-addon-installer-plugin.git",
-                "reference": "aa4e6d6294f6e9a4c48556a4f34f6bfdab9918fe"
+                "reference": "f6fa037a38a0fcba98c429c6d44e47cd98a753b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ImpressCMS/composer-addon-installer-plugin/zipball/aa4e6d6294f6e9a4c48556a4f34f6bfdab9918fe",
-                "reference": "aa4e6d6294f6e9a4c48556a4f34f6bfdab9918fe",
+                "url": "https://api.github.com/repos/ImpressCMS/composer-addon-installer-plugin/zipball/f6fa037a38a0fcba98c429c6d44e47cd98a753b6",
+                "reference": "f6fa037a38a0fcba98c429c6d44e47cd98a753b6",
                 "shasum": ""
             },
             "require": {
                 "composer-plugin-api": "^1.0 || ^2.0",
-                "imponeer/env": "^1.0.0",
-                "php": ">7.2.5",
-                "vlucas/phpdotenv": "^3.3.4"
+                "php": ">7.2.5"
             },
             "require-dev": {
                 "composer/composer": "^1.10.23 || ^2.1.9"
@@ -2495,9 +2493,9 @@
             "description": "This plugin allows the installation of ImpressCMS addons from composer",
             "support": {
                 "issues": "https://github.com/ImpressCMS/composer-addon-installer-plugin/issues",
-                "source": "https://github.com/ImpressCMS/composer-addon-installer-plugin/tree/v1.0.5"
+                "source": "https://github.com/ImpressCMS/composer-addon-installer-plugin/tree/v1.0.6"
             },
-            "time": "2022-07-02T14:53:08+00:00"
+            "time": "2023-01-02T12:29:08+00:00"
         },
         {
             "name": "impresscms/core-theme",
