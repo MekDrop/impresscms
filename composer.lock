@@ -2182,16 +2182,16 @@
         },
         {
             "name": "imponeer/smarty-sunrise-http-router",
-            "version": "v1.1.4",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imponeer/smarty-sunrise-http-router.git",
-                "reference": "4667ff8ba21113274267ded171baedd620762d4e"
+                "reference": "bd0ae086354c5f2d172eb4304b5337e8858d2a99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imponeer/smarty-sunrise-http-router/zipball/4667ff8ba21113274267ded171baedd620762d4e",
-                "reference": "4667ff8ba21113274267ded171baedd620762d4e",
+                "url": "https://api.github.com/repos/imponeer/smarty-sunrise-http-router/zipball/bd0ae086354c5f2d172eb4304b5337e8858d2a99",
+                "reference": "bd0ae086354c5f2d172eb4304b5337e8858d2a99",
                 "shasum": ""
             },
             "require": {
@@ -2218,9 +2218,9 @@
             "description": "Smarty extensions to use with amazing router from sunrise-php",
             "support": {
                 "issues": "https://github.com/imponeer/smarty-sunrise-http-router/issues",
-                "source": "https://github.com/imponeer/smarty-sunrise-http-router/tree/v1.1.4"
+                "source": "https://github.com/imponeer/smarty-sunrise-http-router/tree/v1.1.5"
             },
-            "time": "2022-10-02T12:18:26+00:00"
+            "time": "2022-12-01T11:02:13+00:00"
         },
         {
             "name": "imponeer/smarty-translate",
@@ -6153,22 +6153,22 @@
         },
         {
             "name": "sunrise/http-router",
-            "version": "v2.16.1",
+            "version": "v2.16.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sunrise-php/http-router.git",
-                "reference": "459948edb739b21aaca7db24e778e318b31fa158"
+                "reference": "06d05af92f49890516aa33b49252fa1051813cf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sunrise-php/http-router/zipball/459948edb739b21aaca7db24e778e318b31fa158",
-                "reference": "459948edb739b21aaca7db24e778e318b31fa158",
+                "url": "https://api.github.com/repos/sunrise-php/http-router/zipball/06d05af92f49890516aa33b49252fa1051813cf8",
+                "reference": "06d05af92f49890516aa33b49252fa1051813cf8",
                 "shasum": ""
             },
             "require": {
                 "fig/http-message-util": "^1.1",
                 "php": "^7.1|^8.0",
-                "psr/container": "^1.0",
+                "psr/container": "^1.0 || ^2.0",
                 "psr/http-message": "^1.0",
                 "psr/http-server-handler": "^1.0",
                 "psr/http-server-middleware": "^1.0",
@@ -6179,7 +6179,7 @@
                 "phpunit/phpunit": "7.5.20|9.5.0",
                 "sunrise/coding-standard": "1.0.0",
                 "sunrise/http-factory": "2.0.0",
-                "symfony/console": "^4.4",
+                "symfony/console": "^5.4",
                 "symfony/event-dispatcher": "^4.4"
             },
             "type": "library",
@@ -6227,7 +6227,7 @@
             ],
             "support": {
                 "issues": "https://github.com/sunrise-php/http-router/issues",
-                "source": "https://github.com/sunrise-php/http-router/tree/v2.16.1"
+                "source": "https://github.com/sunrise-php/http-router/tree/v2.16.2"
             },
             "funding": [
                 {
@@ -6239,7 +6239,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-04-19T18:58:13+00:00"
+            "time": "2023-01-01T22:28:23+00:00"
         },
         {
             "name": "symfony/console",
