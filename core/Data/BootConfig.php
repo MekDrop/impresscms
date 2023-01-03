@@ -89,6 +89,10 @@ class BootConfig
 			'root_path' => $rootPath,
 			'url' => $url,
 
+			'url_path' => parse_url($url, PHP_URL_PATH),
+			'úrl_host' => parse_url($url, PHP_URL_HOST),
+			'úrl_scheme' => parse_url($url, PHP_URL_SCHEME),
+
 			'public_path' => $publicPath,
 
 			'plugins_path' => $rootPath . DIRECTORY_SEPARATOR . "plugins",

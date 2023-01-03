@@ -53,7 +53,7 @@
     "cerdic/css-tidy": "^2.0",
     "composer/composer": ">=1.10.22 || >=2.0.13",
     "defuse/php-encryption": "^2.2",
-    "doctrine/annotations": "^1.13",
+    "doctrine/annotations": "^2.0",
     "dompdf/dompdf": "^2.0.0",
     "ellipse/cookie-encryption": "^1.0",
     "erusev/parsedown": "^1.7",
@@ -143,7 +143,6 @@
       "\\ImpressCMS\\Core\\Providers\\PreloadServiceProvider",
       "\\ImpressCMS\\Core\\Providers\\LoggerServiceProvider",
       "\\ImpressCMS\\Core\\Providers\\DatabaseServiceProvider",
-      "\\ImpressCMS\\Core\\Providers\\RouterServiceProvider",
       "\\ImpressCMS\\Core\\Providers\\FilesystemServiceProvider",
       "\\ImpressCMS\\Core\\Providers\\SecurityServiceProvider",
       "\\ImpressCMS\\Core\\Providers\\ConfigServiceProvider",
@@ -154,6 +153,23 @@
       "\\ImpressCMS\\Core\\Providers\\SetupStepsProvider"
     ],
     "services": {
+      "\\ImpressCMS\\Core\\Data\\BootConfig": {},
+      "router": {
+        "class": "\\ImpressCMS\\Core\\Http\\Router",
+        "arguments": [
+          "container",
+          "\\ImpressCMS\\Core\\Data\\BootConfig"
+        ]
+      },
+      "request": {
+        "class": "\\ImpressCMS\\Core\\Http\\RequestFactory",
+        "arguments": [
+          "\\ImpressCMS\\Core\\Data\\BootConfig"
+        ],
+        "methods": {
+          "createFromCurrent": []
+        }
+      },
       "\\ImpressCMS\\Core\\Middlewares\\DetectModuleMiddleware": {
         "arguments": [
           "router"

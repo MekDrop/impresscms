@@ -57,6 +57,10 @@ class BootConfigTest extends TestCase
 			'imanager_folder_url',
 
 			'images_set_url',
+
+			'url_path',
+			'úrl_host',
+			'úrl_scheme',
 		] as $item) {
 			yield $item => [$item];
 		}

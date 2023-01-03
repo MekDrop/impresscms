@@ -1,16 +1,16 @@
 <?php
 
-namespace ImpressCMS\Core\Providers;
+namespace ImpressCMS\Core\Http;
 
 use Defuse\Crypto\Exception\BadFormatException;
 use Defuse\Crypto\Exception\EnvironmentIsBrokenException;
 use Defuse\Crypto\Key;
 use Doctrine\Common\Annotations\AnnotationRegistry;
 use Ellipse\Cookies\EncryptCookiesMiddleware;
-use GuzzleHttp\Psr7\ServerRequest;
 use Http\Factory\Guzzle\ResponseFactory;
 use icms;
 use ImpressCMS\Core\Controllers\LegacyController;
+use ImpressCMS\Core\Data\BootConfig;
 use ImpressCMS\Core\Facades\Config;
 use ImpressCMS\Core\Middlewares\ChangeThemeMiddleware;
 use ImpressCMS\Core\Middlewares\MultiLoginOnlineInfoUpdaterMiddleware;
@@ -18,7 +18,6 @@ use ImpressCMS\Core\Middlewares\SetSessionCookieConfigMiddleware;
 use ImpressCMS\Core\Middlewares\SiteClosedMiddleware;
 use ImpressCMS\Core\Middlewares\UserMiddleware;
 use ImpressCMS\Core\Models\ModuleHandler;
-use League\Container\ServiceProvider\AbstractServiceProvider;
 use League\Flysystem\FileAttributes;
 use League\Flysystem\Filesystem;
 use League\Flysystem\FilesystemException;
@@ -30,91 +29,42 @@ use Middlewares\DeflateEncoder;
 use Middlewares\Firewall;
 use Middlewares\GzipEncoder;
 use Psr\Cache\CacheItemPoolInterface;
+use Psr\Cache\InvalidArgumentException;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Sunrise\Http\Router\Loader\DescriptorLoader;
 use Sunrise\Http\Router\Loader\LoaderInterface;
 use Sunrise\Http\Router\RouteCollector;
 use Sunrise\Http\Router\RouteInterface;
-use Sunrise\Http\Router\Router;
+use Sunrise\Http\Router\Router as SunriseHTTPRouter;
 use Tuupola\Middleware\ServerTimingMiddleware;
 
-/**
- * Defines router
- *
- * @package ImpressCMS\Core\Providers
- */
-class RouterServiceProvider extends AbstractServiceProvider
+class Router extends SunriseHTTPRouter
 {
-	/**
-	 * @inheritdoc
-	 */
-	protected $provides = [
-		'router',
-		'request',
-	];
 
 	/**
-	 * @inheritDoc
+	 * @var ContainerInterface $container
 	 */
-	public function register()
-	{
-		$this->leagueContainer->add('router', function () {
-			static $router = null;
+	protected $container;
+	/**
+	 * @var BootConfig
+	 */
+	protected $bootConfig;
 
-			if ($router === null) {
-				$router = new Router();
-				$router->load(
-					$this->createDescriptorLoader()
-				);
-				$router->addRoute(
-					...$this->getOldStyleRoutes()
-				);
-				$router->addMiddleware(
-					...$this->getSystemMiddlewares(),
-					...$this->getContainer()->get('middleware.global')
-				);
-			}
+	public function __construct(ContainerInterface $container, BootConfig $bootConfig) {
+		$this->container = $container;
+		$this->bootConfig = $bootConfig;
 
-			return $router;
-		});
-
-		$this->leagueContainer->add('request', function () {
-			$basePath = parse_url(
-				env('URL'),
-				PHP_URL_PATH
-			);
-			if ($basePath !== '/' && $basePath !== null) {
-				/**
-				 * @var Router $router
-				 */
-				$router = $this->container->get('router');
-				$router->addMiddleware(
-					(new BasePath($basePath))->fixLocation()
-				);
-				if (substr($basePath, -1) !== '/') {
-					$basePath .= '/';
-				}
-				if ($basePath[0] !== '/') {
-					return '/' . $basePath;
-				}
-				$request = ServerRequest::fromGlobals();
-				$uri = $request->getUri();
-				$path = $uri->getPath();
-				if (strpos($path, $basePath) === 0) {
-					$path = substr($path, strlen($basePath)) ?: '';
-					if ($path === '') {
-						$path = '/';
-					}
-					$request = $request->withUri(
-						$uri->withPath($path)
-					);
-				}
-			} else {
-				$request = ServerRequest::fromGlobals();
-			}
-
-			return $request;
-		});
+		$this->load(
+			$this->createDescriptorLoader()
+		);
+		$this->addRoute(
+			...$this->getOldStyleRoutes()
+		);
+		$this->addMiddleware(
+			...$this->getSystemMiddlewares(),
+			...$this->container->get('middleware.global')
+		);
 	}
 
 	/**
@@ -124,17 +74,15 @@ class RouterServiceProvider extends AbstractServiceProvider
 	 */
 	protected function createDescriptorLoader(): LoaderInterface
 	{
-		AnnotationRegistry::registerLoader('class_exists');
+		//AnnotationRegistry::registerLoader('class_exists');
 
 		$loader = new DescriptorLoader();
-		$loader->setContainer(
-			$this->getContainer()
-		);
+		$loader->setContainer($this->container);
 		$loader->attachArray(
 			$this->getControllerPaths()
 		);
 		$loader->setCache(
-			$this->getContainer()->get('cache.simple')
+			$this->container->get('cache.simple')
 		);
 		$loader->setCacheKey('routes-descriptors');
 
@@ -149,11 +97,11 @@ class RouterServiceProvider extends AbstractServiceProvider
 	protected function getControllerPaths(): array
 	{
 		$paths = [
-			ICMS_ROOT_PATH . '/core/Controllers'
+			$this->bootConfig->get('root_path') . '/core/Controllers'
 		];
 
 		foreach (ModuleHandler::getActive() as $moduleDir) {
-			$path = ICMS_MODULES_PATH . '/' . $moduleDir . '/Controllers';
+			$path = $this->bootConfig->get('modules_path') . '/' . $moduleDir . '/Controllers';
 			if (is_dir($path)) {
 				$paths[] = $path;
 			}
@@ -170,11 +118,11 @@ class RouterServiceProvider extends AbstractServiceProvider
 	 * @throws BadFormatException
 	 * @throws EnvironmentIsBrokenException
 	 */
-	protected function getSystemMiddlewares()
+	protected function getSystemMiddlewares(): array
 	{
 		$middleware = [];
 
-		if (env('LOGGING_ENABLED', false)) {
+		if ($this->bootConfig->get('logging_enabled', false)) {
 			$middleware[] = new ServerTimingMiddleware();
 		}
 
@@ -203,8 +151,8 @@ class RouterServiceProvider extends AbstractServiceProvider
 
 		$middleware[] = new SetSessionCookieConfigMiddleware(
 			60 * $configMain['session_expire'],
-			parse_url(ICMS_URL, PHP_URL_HOST),
-			strpos(ICMS_URL, 'https') === 0
+			$this->bootConfig->get('url_host'),
+			$this->bootConfig->get('url_scheme') === 'https'
 		);
 
 		$middleware[] = new ChangeThemeMiddleware($configMain['theme_set_allowed']);
@@ -222,10 +170,10 @@ class RouterServiceProvider extends AbstractServiceProvider
 		if ($configMain['enable_badips']) {
 			$middleware[] = new ClientIp();
 			$middleware[] = (
-			new Firewall(
-				null,
-				$this->container->get('\\' . ResponseFactory::class)
-			)
+				new Firewall(
+					null,
+					$this->container->get('\\' . ResponseFactory::class)
+				)
 			)
 				->blacklist(
 					$configMain['bad_ips']
@@ -242,41 +190,12 @@ class RouterServiceProvider extends AbstractServiceProvider
 			);
 		}
 
+		$basePath = $this->bootConfig->get('úrl_path');
+		if ($basePath !== '/' && $basePath !== null) {
+			$middleware[] = (new BasePath($basePath))->fixLocation();
+		}
+
 		return $middleware;
-	}
-
-
-
-	private function createPathRegExpString(Filesystem $filesystem, string $path, array $excludedExtensions = [], array $excludedFilenames = [])
-	{
-		$parts = [];
-		/**
-		 * @var StorageAttributes $item
-		 */
-		foreach ($filesystem->listContents($path, false) as $item) {
-			var_dump($item->path());
-			die();
-			if ($item->isDir()) {
-
-				continue;
-			}
-
-			if (
-				($file['type'] !== 'file') ||
-				($file['basename'][0] === '.') ||
-				in_array($file['basename'], $excludedFilenames, true) ||
-				in_array(strtolower($file['extension']), $excludedExtensions, true)
-			) {
-				continue;
-			}
-			$parts[] = preg_quote($file['path'], '/');
-		}
-
-		if (empty($parts)) {
-			return null;
-		}
-
-		return (count($parts) > 1) ? ('(' . implode('|', $parts) . ')') : $parts[0];
 	}
 
 	/**
@@ -423,6 +342,7 @@ class RouterServiceProvider extends AbstractServiceProvider
 	 * @return RouteInterface[]
 	 *
 	 * @throws FilesystemException
+	 * @throws InvalidArgumentException
 	 */
 	protected function getOldStyleRoutes(): array
 	{
