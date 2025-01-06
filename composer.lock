@@ -1862,16 +1862,16 @@
         },
         {
             "name": "imponeer/editor-contracts",
-            "version": "v1.0.5",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imponeer/editor-contracts.git",
-                "reference": "172a28aa79a61dc59fc211edfbe0355fe2e15a64"
+                "reference": "99313c091cd6e13b629923206e8e5a9cfc3f9ec0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imponeer/editor-contracts/zipball/172a28aa79a61dc59fc211edfbe0355fe2e15a64",
-                "reference": "172a28aa79a61dc59fc211edfbe0355fe2e15a64",
+                "url": "https://api.github.com/repos/imponeer/editor-contracts/zipball/99313c091cd6e13b629923206e8e5a9cfc3f9ec0",
+                "reference": "99313c091cd6e13b629923206e8e5a9cfc3f9ec0",
                 "shasum": ""
             },
             "require": {
@@ -1891,9 +1891,9 @@
             "description": "Interfaces for building PHP classes that lets to easier make web editor integrations in your content management systems",
             "support": {
                 "issues": "https://github.com/imponeer/editor-contracts/issues",
-                "source": "https://github.com/imponeer/editor-contracts/tree/v1.0.5"
+                "source": "https://github.com/imponeer/editor-contracts/tree/v1.0.9"
             },
-            "time": "2022-12-19T11:07:11+00:00"
+            "time": "2023-10-23T11:49:26+00:00"
         },
         {
             "name": "imponeer/env",
@@ -7191,29 +7191,26 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.27.0",
+            "version": "v1.31.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936"
+                "reference": "60328e362d4c2c802a54fcbf04f9d3fb892b4cf8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
-                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/60328e362d4c2c802a54fcbf04f9d3fb892b4cf8",
+                "reference": "60328e362d4c2c802a54fcbf04f9d3fb892b4cf8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=7.2"
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.27-dev"
-                },
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -7254,7 +7251,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.27.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.31.0"
             },
             "funding": [
                 {
@@ -7270,7 +7267,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-03T14:55:06+00:00"
+            "time": "2024-09-09T11:45:10+00:00"
         },
         {
             "name": "symfony/process",
@@ -9906,5 +9903,5 @@
     "platform-overrides": {
         "php": "7.3.0"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
