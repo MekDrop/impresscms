@@ -5920,27 +5920,33 @@
         },
         {
             "name": "simplepie/simplepie",
-            "version": "1.7.0",
+            "version": "1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/simplepie/simplepie.git",
-                "reference": "9e9add3428ce86aede874bcf9a59c78e272f8dc1"
+                "reference": "76cccb1b2c5dcaf44f304c925ab30c0f48643992"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/simplepie/simplepie/zipball/9e9add3428ce86aede874bcf9a59c78e272f8dc1",
-                "reference": "9e9add3428ce86aede874bcf9a59c78e272f8dc1",
+                "url": "https://api.github.com/repos/simplepie/simplepie/zipball/76cccb1b2c5dcaf44f304c925ab30c0f48643992",
+                "reference": "76cccb1b2c5dcaf44f304c925ab30c0f48643992",
                 "shasum": ""
             },
             "require": {
                 "ext-pcre": "*",
                 "ext-xml": "*",
                 "ext-xmlreader": "*",
-                "php": ">=5.6.0"
+                "php": ">=7.2.0"
             },
             "require-dev": {
+                "donatj/mock-webserver": "^2.7",
                 "friendsofphp/php-cs-fixer": "^2.19 || ^3.8",
-                "yoast/phpunit-polyfills": "^1.0.1"
+                "mf2/mf2": "^0.5.0",
+                "phpstan/phpstan": "~1.12.2",
+                "phpunit/phpunit": "^8 || ^9 || ^10",
+                "psr/http-client": "^1.0",
+                "psr/http-factory": "^1.0",
+                "psr/simple-cache": "^1 || ^2 || ^3"
             },
             "suggest": {
                 "ext-curl": "",
@@ -5989,9 +5995,9 @@
             ],
             "support": {
                 "issues": "https://github.com/simplepie/simplepie/issues",
-                "source": "https://github.com/simplepie/simplepie/tree/1.7.0"
+                "source": "https://github.com/simplepie/simplepie/tree/1.9.0"
             },
-            "time": "2022-09-30T06:49:48+00:00"
+            "time": "2025-09-12T06:34:27+00:00"
         },
         {
             "name": "smarty/smarty",
@@ -9902,9 +9908,9 @@
         "ext-pcre": "*",
         "ext-session": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "7.3.0"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.6.0"
 }
