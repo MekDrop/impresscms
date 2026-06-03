@@ -1862,16 +1862,16 @@
         },
         {
             "name": "imponeer/editor-contracts",
-            "version": "v1.0.5",
+            "version": "v1.0.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imponeer/editor-contracts.git",
-                "reference": "172a28aa79a61dc59fc211edfbe0355fe2e15a64"
+                "reference": "99313c091cd6e13b629923206e8e5a9cfc3f9ec0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imponeer/editor-contracts/zipball/172a28aa79a61dc59fc211edfbe0355fe2e15a64",
-                "reference": "172a28aa79a61dc59fc211edfbe0355fe2e15a64",
+                "url": "https://api.github.com/repos/imponeer/editor-contracts/zipball/99313c091cd6e13b629923206e8e5a9cfc3f9ec0",
+                "reference": "99313c091cd6e13b629923206e8e5a9cfc3f9ec0",
                 "shasum": ""
             },
             "require": {
@@ -1891,9 +1891,9 @@
             "description": "Interfaces for building PHP classes that lets to easier make web editor integrations in your content management systems",
             "support": {
                 "issues": "https://github.com/imponeer/editor-contracts/issues",
-                "source": "https://github.com/imponeer/editor-contracts/tree/v1.0.5"
+                "source": "https://github.com/imponeer/editor-contracts/tree/v1.0.9"
             },
-            "time": "2022-12-19T11:07:11+00:00"
+            "time": "2023-10-23T11:49:26+00:00"
         },
         {
             "name": "imponeer/env",
@@ -2321,16 +2321,16 @@
         },
         {
             "name": "imponeer/symfony-translations-constants-loader",
-            "version": "v1.0.5",
+            "version": "v1.0.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/imponeer/symfony-translations-constants-loader.git",
-                "reference": "7a9047558fc97fd5d31d5190f471031ecb032780"
+                "reference": "44c3e3549720b808eca3ceb9a178c265cc5c6eab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/imponeer/symfony-translations-constants-loader/zipball/7a9047558fc97fd5d31d5190f471031ecb032780",
-                "reference": "7a9047558fc97fd5d31d5190f471031ecb032780",
+                "url": "https://api.github.com/repos/imponeer/symfony-translations-constants-loader/zipball/44c3e3549720b808eca3ceb9a178c265cc5c6eab",
+                "reference": "44c3e3549720b808eca3ceb9a178c265cc5c6eab",
                 "shasum": ""
             },
             "require": {
@@ -2369,22 +2369,22 @@
             ],
             "support": {
                 "issues": "https://github.com/imponeer/symfony-translations-constants-loader/issues",
-                "source": "https://github.com/imponeer/symfony-translations-constants-loader/tree/v1.0.5"
+                "source": "https://github.com/imponeer/symfony-translations-constants-loader/tree/v1.0.7"
             },
-            "time": "2022-12-01T14:08:35+00:00"
+            "time": "2023-07-01T14:13:26+00:00"
         },
         {
             "name": "impresscms/codemirror-integration",
-            "version": "v0.2.3",
+            "version": "v0.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ImpressCMS/codemirror-integration.git",
-                "reference": "5d4c24e09c3d581aa79cb97c54eef8b6a86279cf"
+                "reference": "9487eb682758e3f3aa2159d96bd55361308aefa1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ImpressCMS/codemirror-integration/zipball/5d4c24e09c3d581aa79cb97c54eef8b6a86279cf",
-                "reference": "5d4c24e09c3d581aa79cb97c54eef8b6a86279cf",
+                "url": "https://api.github.com/repos/ImpressCMS/codemirror-integration/zipball/9487eb682758e3f3aa2159d96bd55361308aefa1",
+                "reference": "9487eb682758e3f3aa2159d96bd55361308aefa1",
                 "shasum": ""
             },
             "require": {
@@ -2404,29 +2404,29 @@
                     "big": "images/codemirror-logo.png",
                     "small": "images/codemirror-logo.png"
                 },
-                "services": {
-                    "\\ImpressCMS\\Modules\\CodeMirrorIntegration\\EditorInfo": {
-                        "class": "\\ImpressCMS\\Modules\\CodeMirrorIntegration\\EditorInfo",
-                        "arguments": [
-                            "translator"
-                        ]
-                    },
-                    "codemirror": {
-                        "class": "\\ImpressCMS\\Modules\\CodeMirrorIntegration\\EditorFactory",
-                        "arguments": [
-                            "\\ImpressCMS\\Modules\\CodeMirrorIntegration\\EditorInfo"
-                        ],
-                        "tags": [
-                            "editor.source"
-                        ]
-                    }
-                },
                 "assets": [
                     "vendor/npm-asset/codemirror/lib/",
                     "vendor/npm-asset/codemirror/theme/",
                     "vendor/npm-asset/codemirror/mode/",
                     "vendor/npm-asset/codemirror/addon/"
-                ]
+                ],
+                "services": {
+                    "codemirror": {
+                        "tags": [
+                            "editor.source"
+                        ],
+                        "class": "\\ImpressCMS\\Modules\\CodeMirrorIntegration\\EditorFactory",
+                        "arguments": [
+                            "\\ImpressCMS\\Modules\\CodeMirrorIntegration\\EditorInfo"
+                        ]
+                    },
+                    "\\ImpressCMS\\Modules\\CodeMirrorIntegration\\EditorInfo": {
+                        "class": "\\ImpressCMS\\Modules\\CodeMirrorIntegration\\EditorInfo",
+                        "arguments": [
+                            "translator"
+                        ]
+                    }
+                }
             },
             "autoload": {
                 "psr-4": {
@@ -2446,9 +2446,9 @@
             "description": "Integrates CodeMirror with ImpressCMS",
             "support": {
                 "issues": "https://github.com/ImpressCMS/codemirror-integration/issues",
-                "source": "https://github.com/ImpressCMS/codemirror-integration/tree/v0.2.3"
+                "source": "https://github.com/ImpressCMS/codemirror-integration/tree/v0.2.7"
             },
-            "time": "2022-11-07T11:06:43+00:00"
+            "time": "2023-07-03T11:10:25+00:00"
         },
         {
             "name": "impresscms/composer-addon-installer-plugin",
@@ -6342,16 +6342,16 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v2.5.2",
+            "version": "v2.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
-                "reference": "e8b495ea28c1d97b5e0c121748d6f9b53d075c66"
+                "reference": "605389f2a7e5625f273b53960dc46aeaf9c62918"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/e8b495ea28c1d97b5e0c121748d6f9b53d075c66",
-                "reference": "e8b495ea28c1d97b5e0c121748d6f9b53d075c66",
+                "url": "https://api.github.com/repos/symfony/deprecation-contracts/zipball/605389f2a7e5625f273b53960dc46aeaf9c62918",
+                "reference": "605389f2a7e5625f273b53960dc46aeaf9c62918",
                 "shasum": ""
             },
             "require": {
@@ -6359,12 +6359,12 @@
             },
             "type": "library",
             "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
                 "branch-alias": {
                     "dev-main": "2.5-dev"
-                },
-                "thanks": {
-                    "name": "symfony/contracts",
-                    "url": "https://github.com/symfony/contracts"
                 }
             },
             "autoload": {
@@ -6389,7 +6389,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v2.5.2"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v2.5.4"
             },
             "funding": [
                 {
@@ -6405,7 +6405,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-01-02T09:53:40+00:00"
+            "time": "2024-09-25T14:11:13+00:00"
         },
         {
             "name": "symfony/filesystem",
@@ -6953,20 +6953,21 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.27.0",
+            "version": "v1.38.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "8ad114f6b39e2c98a8b0e3bd907732c207c2b534"
+                "reference": "14c5439eec4ccff081ac14eca2dc57feb2a66d92"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/8ad114f6b39e2c98a8b0e3bd907732c207c2b534",
-                "reference": "8ad114f6b39e2c98a8b0e3bd907732c207c2b534",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/14c5439eec4ccff081ac14eca2dc57feb2a66d92",
+                "reference": "14c5439eec4ccff081ac14eca2dc57feb2a66d92",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "ext-iconv": "*",
+                "php": ">=7.2"
             },
             "provide": {
                 "ext-mbstring": "*"
@@ -6976,12 +6977,9 @@
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.27-dev"
-                },
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -7016,7 +7014,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.27.0"
+                "source": "https://github.com/symfony/polyfill-mbstring/tree/v1.38.1"
             },
             "funding": [
                 {
@@ -7028,11 +7026,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-03T14:55:06+00:00"
+            "time": "2026-05-26T12:51:13+00:00"
         },
         {
             "name": "symfony/polyfill-php72",
@@ -7191,29 +7193,26 @@
         },
         {
             "name": "symfony/polyfill-php80",
-            "version": "v1.27.0",
+            "version": "v1.37.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-php80.git",
-                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936"
+                "reference": "dfb55726c3a76ea3b6459fcfda1ec2d80a682411"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
-                "reference": "7a6ff3f1959bb01aefccb463a0f2cd3d3d2fd936",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/dfb55726c3a76ea3b6459fcfda1ec2d80a682411",
+                "reference": "dfb55726c3a76ea3b6459fcfda1ec2d80a682411",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.1"
+                "php": ">=7.2"
             },
             "type": "library",
             "extra": {
-                "branch-alias": {
-                    "dev-main": "1.27-dev"
-                },
                 "thanks": {
-                    "name": "symfony/polyfill",
-                    "url": "https://github.com/symfony/polyfill"
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
                 }
             },
             "autoload": {
@@ -7254,7 +7253,7 @@
                 "shim"
             ],
             "support": {
-                "source": "https://github.com/symfony/polyfill-php80/tree/v1.27.0"
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.37.0"
             },
             "funding": [
                 {
@@ -7266,11 +7265,15 @@
                     "type": "github"
                 },
                 {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
                     "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-11-03T14:55:06+00:00"
+            "time": "2026-04-10T16:19:22+00:00"
         },
         {
             "name": "symfony/process",
@@ -7567,16 +7570,16 @@
         },
         {
             "name": "symfony/translation",
-            "version": "v5.4.14",
+            "version": "v5.4.45",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "f0ed07675863aa6e3939df8b1bc879450b585cab"
+                "reference": "98f26acc99341ca4bab345fb14d7b1d7cb825bed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/f0ed07675863aa6e3939df8b1bc879450b585cab",
-                "reference": "f0ed07675863aa6e3939df8b1bc879450b585cab",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/98f26acc99341ca4bab345fb14d7b1d7cb825bed",
+                "reference": "98f26acc99341ca4bab345fb14d7b1d7cb825bed",
                 "shasum": ""
             },
             "require": {
@@ -7644,7 +7647,7 @@
             "description": "Provides tools to internationalize your application",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/translation/tree/v5.4.14"
+                "source": "https://github.com/symfony/translation/tree/v5.4.45"
             },
             "funding": [
                 {
@@ -7660,20 +7663,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-10-07T08:01:20+00:00"
+            "time": "2024-09-25T14:11:13+00:00"
         },
         {
             "name": "symfony/translation-contracts",
-            "version": "v2.5.2",
+            "version": "v2.5.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation-contracts.git",
-                "reference": "136b19dd05cdf0709db6537d058bcab6dd6e2dbe"
+                "reference": "450d4172653f38818657022252f9d81be89ee9a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/136b19dd05cdf0709db6537d058bcab6dd6e2dbe",
-                "reference": "136b19dd05cdf0709db6537d058bcab6dd6e2dbe",
+                "url": "https://api.github.com/repos/symfony/translation-contracts/zipball/450d4172653f38818657022252f9d81be89ee9a8",
+                "reference": "450d4172653f38818657022252f9d81be89ee9a8",
                 "shasum": ""
             },
             "require": {
@@ -7684,12 +7687,12 @@
             },
             "type": "library",
             "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/contracts",
+                    "name": "symfony/contracts"
+                },
                 "branch-alias": {
                     "dev-main": "2.5-dev"
-                },
-                "thanks": {
-                    "name": "symfony/contracts",
-                    "url": "https://github.com/symfony/contracts"
                 }
             },
             "autoload": {
@@ -7722,7 +7725,7 @@
                 "standards"
             ],
             "support": {
-                "source": "https://github.com/symfony/translation-contracts/tree/v2.5.2"
+                "source": "https://github.com/symfony/translation-contracts/tree/v2.5.4"
             },
             "funding": [
                 {
@@ -7738,7 +7741,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-06-27T16:58:25+00:00"
+            "time": "2024-09-25T14:11:13+00:00"
         },
         {
             "name": "tuupola/callable-handler",
@@ -9902,9 +9905,9 @@
         "ext-pcre": "*",
         "ext-session": "*"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "platform-overrides": {
         "php": "7.3.0"
     },
-    "plugin-api-version": "2.3.0"
+    "plugin-api-version": "2.9.0"
 }
